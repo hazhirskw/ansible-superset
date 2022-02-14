@@ -1,0 +1,27 @@
+- hosts: base
+  become: yes
+  vars:
+    user: kube
+    tmzone: Asia/Tehran
+    my_client_ip: 192.168.43.145
+    f2b_findtime: 1h
+    f2b_bantime: 1h
+    f2b_maxretry: 3
+    ssh_port: 22
+    inventory_hostname_short: kmaster
+    inventory_hostname: kmaster
+
+    f2b_jail_local: |
+      [DEFAULT]
+      ignoreip = 127.0.0.1/8 ::1 {{ my_client_ip }}
+      findtime = 1h
+      bantime = 2h
+      maxretry = 3
+
+      [sshd]
+      enabled = true
+      :port = {{ ssh_port }}
+  roles:
+    - initdebian
+
+

@@ -1,0 +1,7 @@
+---
+# vars file for initdebian
+packages:
+  - vim
+  - fail2ban
+  - unzip
+  - git
