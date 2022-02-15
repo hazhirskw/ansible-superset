@@ -1,2 +1,12 @@
 ---
 # vars file for ApacheSuperset
+packages: 
+  - build-essential
+  - libssl-dev 
+  - libffi-dev 
+  - python3-dev 
+  - python3-pip
+  - python3-venv
+  - libsasl2-dev
+  - libldap2-dev
+  - libpq-dev

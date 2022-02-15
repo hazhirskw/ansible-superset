@@ -1,2 +1,38 @@
 ---
 # tasks file for ApacheSuperset
+- name: Ensure that these software packages are installed
+  apt:
+    pkg: "{{ packages }}"
+
+- name: Install virtualenv
+  pip:
+    name: virtualenv
+
+- name: Include a play after another play
+  include: roles/ApacheSuperset/tasks/setup.yml
+  become: yes
+  become_user: "{{ usr }}"
+
+- name: Copy service file to host
+  copy:
+    src: superset.service
+    dest: /home/hazhir
+
+- name: Edit service file with desired values
+  command: sed -i "s/USER/{{ usr }}/g" superset.service
+
+- name: Move service file to systemd dir  
+  command: mv superset.service /etc/systemd/system/
+
+- name: Start superset
+  service:
+    name: superset
+    daemon_reload: yes
+    state: restarted
+
+
+
+
+
+
+

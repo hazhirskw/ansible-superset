@@ -1,0 +1,48 @@
+---
+- name: Manually create the initial virtualenv
+  command: "{{ item }}"
+  with_items:
+    - python3 -m venv superset
+
+- name: Install dependencies
+  pip:
+   name:
+     - Flask-WTF==0.14.3
+     - psycopg2
+     - gevent
+   virtualenv: /home/{{ usr }}/superset
+
+- name: Install superset into venv
+  pip:
+    name:
+      - apache-superset
+    virtualenv: /home/hazhir/superset
+    virtualenv_site_packages: yes
+  register: r1
+
+- debug: msg= "{{ r1.stdout }}"
+
+- name: Deploy superset config file
+  copy:
+   src: superset_config.py
+   dest: ~/superset/lib/python3.8/site-packages/
+
+#- name: Active virtual environment and upgrade db
+#  shell: "{{ item }}"
+#  with_items:
+#    - . bin/activate && superset db upgrade
+#  args:
+#    chdir: superset
+
+- name: Copy superset_setup and set permissions
+  copy:
+    src: superset_setup.sh
+    dest: ~/
+    mode: u+x,g-x,o-x
+
+- name: Edit superset_setup.sh parameters
+  command: "{{ item }}"
+  with_items:
+    - sed -i "s/ADMIN/{{ admin }}/g" superset_setup.sh
+    - sed -i "s/passwd/{{ password }}/g" superset_setup.sh
+
