@@ -11,11 +11,11 @@ Project is created and tested with:
 1- Make sure to define following variables
 
 
-usr: The username of the target host (it must be a non-root user with sudo privileges)\n
-pass: The password of the above user\n
-admin: Admin username of the superset service\n
-adminpass: Password of the superset admin\n
-dbpass: The password which will be set to access the database\n
+usr: The username of the target host (it must be a non-root user with sudo privileges)  
+	pass: The password of the above user  
+	admin: Admin username of the superset service  
+	adminpass: Password of the superset admin  
+	dbpass: The password which will be set to access the database  
 
 
 2- In the hosts.yml file set the vaulues of ansible_host (IP of the server) and server_name(the domain which the superset service is published on) to the desired values
