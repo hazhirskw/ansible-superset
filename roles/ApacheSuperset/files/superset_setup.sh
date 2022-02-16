@@ -18,8 +18,6 @@ superset fab create-admin --username $usr --firstname $name --lastname $lastname
 # Create default roles and permissions
 superset init
 
-# To start a development web server on port 8088, use -p to bind to another port
-#nohup superset run --host 0.0.0.0 -p 8088 --with-threads --reload --debugger > server.log &
-gunicorn -w 1 -k gevent --timeout 120 -b  0.0.0.0:8088 --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
+gunicorn -w 1 -k gevent --timeout 120 -b  127.0.0.1:8088 --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
 
 

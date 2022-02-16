@@ -10,29 +10,24 @@
      - Flask-WTF==0.14.3
      - psycopg2
      - gevent
+     - WTForms==2.3.3
+     - pyOpenSSL
    virtualenv: /home/{{ usr }}/superset
 
 - name: Install superset into venv
   pip:
     name:
       - apache-superset
-    virtualenv: /home/hazhir/superset
+    virtualenv: /home/{{ usr }}/superset
     virtualenv_site_packages: yes
-  register: r1
-
-- debug: msg= "{{ r1.stdout }}"
 
 - name: Deploy superset config file
   copy:
    src: superset_config.py
    dest: ~/superset/lib/python3.8/site-packages/
 
-#- name: Active virtual environment and upgrade db
-#  shell: "{{ item }}"
-#  with_items:
-#    - . bin/activate && superset db upgrade
-#  args:
-#    chdir: superset
+- name: Edit superset db password
+  command: sed -i "s/DBPASS/{{ dbpass }}/g"  ~/superset/lib/python3.8/site-packages/superset_config.py
 
 - name: Copy superset_setup and set permissions
   copy:

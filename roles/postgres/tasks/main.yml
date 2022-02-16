@@ -1,0 +1,19 @@
+---
+# tasks file for postgres
+- name: install postgres
+  apt: 
+    pkg:
+      - postgresql-12
+      - postgresql-contrib
+      - acl
+
+- name: Copy postgres config
+  template:
+    src: pg_hba.conf
+    dest: /etc/postgresql/12/main/
+
+- name: Restart postgresql
+  service:
+    name: postgresql
+    state: restarted
+

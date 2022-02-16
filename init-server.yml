@@ -22,7 +22,9 @@
       enabled = true
       :port = {{ ssh_port }}
   roles:
-    #- initdebian
+    - initdebian
+    - postgres
     - ApacheSuperset
+    - nginx
 
 

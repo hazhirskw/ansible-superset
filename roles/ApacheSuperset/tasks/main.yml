@@ -6,7 +6,9 @@
 
 - name: Install virtualenv
   pip:
-    name: virtualenv
+    name: 
+      - virtualenv
+      - psycopg2
 
 - name: Include a play after another play
   include: roles/ApacheSuperset/tasks/setup.yml
@@ -16,13 +18,32 @@
 - name: Copy service file to host
   copy:
     src: superset.service
-    dest: /home/hazhir
+    dest: /home/{{ usr }}
 
 - name: Edit service file with desired values
   command: sed -i "s/USER/{{ usr }}/g" superset.service
 
 - name: Move service file to systemd dir  
   command: mv superset.service /etc/systemd/system/
+
+- name: Create superset db
+  become: yes
+  become_method: sudo
+  become_user: postgres
+  postgresql_db:
+    name: superset
+
+- name: Create user with privileges
+  become: yes
+  become_method: sudo
+  become_user: postgres
+  postgresql_user:
+    db: superset
+    name: superset
+    password: "{{ dbpass }}" 
+    priv: "ALL"
+    expires: infinity
+
 
 - name: Start superset
   service:

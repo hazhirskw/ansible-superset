@@ -1,5 +1,10 @@
 ---
 # tasks file for initdebian
+- name: Update apt sources.list
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+
 - name: Update apt repo and cache on all Debian/Ubuntu boxes
   apt: update_cache=yes force_apt_get=yes
 
