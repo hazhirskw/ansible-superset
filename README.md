@@ -9,6 +9,8 @@ Project is created and tested with:
 
 ## Setup
 1- Make sure to define following variables
+
+
 usr: The username of the target host (it must be a non-root user with sudo privileges)\n
 pass: The password of the above user\n
 admin: Admin username of the superset service\n
