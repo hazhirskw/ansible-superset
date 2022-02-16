@@ -2,9 +2,9 @@
   vars_files:
     - vars.yml
   roles:
-    #- initdebian
-    #- postgres
-    #- ApacheSuperset
+    - initdebian
+    - postgres
+    - ApacheSuperset
     - nginx
 
 
