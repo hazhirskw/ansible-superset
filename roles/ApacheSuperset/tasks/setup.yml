@@ -22,22 +22,14 @@
     virtualenv_site_packages: yes
 
 - name: Deploy superset config file
-  copy:
+  template:
    src: superset_config.py
    dest: ~/superset/lib/python3.8/site-packages/
 
-- name: Edit superset db password
-  command: sed -i "s/DBPASS/{{ dbpass }}/g"  ~/superset/lib/python3.8/site-packages/superset_config.py
-
 - name: Copy superset_setup and set permissions
-  copy:
+  template:
     src: superset_setup.sh
     dest: ~/
     mode: u+x,g-x,o-x
 
-- name: Edit superset_setup.sh parameters
-  command: "{{ item }}"
-  with_items:
-    - sed -i "s/ADMIN/{{ admin }}/g" superset_setup.sh
-    - sed -i "s/passwd/{{ password }}/g" superset_setup.sh
 

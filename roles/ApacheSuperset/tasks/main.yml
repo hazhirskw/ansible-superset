@@ -10,18 +10,15 @@
       - virtualenv
       - psycopg2
 
-- name: Include a play after another play
+- name: Setup venv with a non-root user
   include: roles/ApacheSuperset/tasks/setup.yml
   become: yes
   become_user: "{{ usr }}"
 
 - name: Copy service file to host
-  copy:
+  template:
     src: superset.service
     dest: /home/{{ usr }}
-
-- name: Edit service file with desired values
-  command: sed -i "s/USER/{{ usr }}/g" superset.service
 
 - name: Move service file to systemd dir  
   command: mv superset.service /etc/systemd/system/
@@ -50,10 +47,3 @@
     name: superset
     daemon_reload: yes
     state: restarted
-
-
-
-
-
-
-

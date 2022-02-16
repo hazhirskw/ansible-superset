@@ -5,10 +5,10 @@ After = network.target
 [Service]
 PermissionsStartOnly = true
 PIDFile = /run/superset/superset.pid
-User = USER
-Group = USER
-WorkingDirectory = /home/USER/superset
-ExecStart = /home/USER/superset_setup.sh
+User = {{usr}}
+Group = {{usr}}
+WorkingDirectory = /home/{{usr}}/superset
+ExecStart = /home/{{usr}}/superset_setup.sh
 ExecReload = /bin/kill -s HUP $MAINPID
 ExecStop = /bin/kill -s TERM $MAINPID
 Restart=on-failure

@@ -1,0 +1,20 @@
+ansible_python_interpreter: /usr/bin/python3
+ansible_become: yes
+ansible_become_method: sudo
+tmzone: Asia/Tehran
+controller_ip: 192.168.43.145
+ssh_port: 22
+inventory_hostname_short: superset
+inventory_hostname: apacheseuperset
+f2b_jail_local: |
+  [DEFAULT]
+  ignoreip = 127.0.0.1/8 ::1 {{ controller_ip }}
+  findtime = 10m
+  bantime = 2h
+  maxretry = 3
+
+  [sshd]
+  enabled = true
+  :port = {{ ssh_port }}
+
+

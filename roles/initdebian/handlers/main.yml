@@ -1,18 +1,18 @@
 ---
 # handlers file for initdebian
-- name: restart sshd
+- name: Restart sshd
   service:
     name: sshd
     state: restarted
   when: reboot_required.stat.exists == false
 
-- name: restart fail2ban
+- name: Restart fail2ban
   service:
     name: fail2ban
     state: restarted
   when: reboot_required.stat.exists == false
 
-- name: restart systemd-resolved
+- name: Restart systemd-resolved
   service:
     name: systemd-resolved
     state: restarted

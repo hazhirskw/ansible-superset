@@ -1,9 +1,9 @@
 #!/bin/bash
-usr="ADMIN"
-name="ADMIN"
-lastname="ADMIN"
-email="ADMIN"
-pass="passwd"
+usr="{{admin}}"
+name="{{admin}}"
+lastname="{{admin}}"
+email="{{admin}}"
+pass="{{adminPass}}"
 
 cd superset
 chmod a+x bin/activate

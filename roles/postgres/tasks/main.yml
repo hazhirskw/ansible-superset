@@ -1,6 +1,6 @@
 ---
 # tasks file for postgres
-- name: install postgres
+- name: Install postgres
   apt: 
     pkg:
       - postgresql-12
