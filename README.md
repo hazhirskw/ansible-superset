@@ -27,4 +27,5 @@ usr: The username of the target host (it must be a non-root user with sudo privi
 ansible-playbook -i hosts.yml --ask-vault-pass --extra-vars '@credentials.yml' playbook.yml
 
 ## Access
+The related systemd service is superset.service
 After configuration apache superset service should be available on http(s)://server_name 
