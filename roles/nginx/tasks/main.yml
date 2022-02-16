@@ -15,6 +15,10 @@
     regexp: 'default_server'
     replace: ''
 
+
+- name: Generate certificate keys (Temporary self-signed)
+  command: openssl req -new -nodes -x509  -subj '/CN=local/O=MYCOMPANY/C=IR' -days 10 -keyout /etc/ssl/certs/cert.key -out /etc/ssl/certs/cert.crt
+
 - name: Restart nginx
   service:
     name: nginx

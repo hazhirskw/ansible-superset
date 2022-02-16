@@ -52,7 +52,7 @@
     group: root
     mode: 0644
   notify:
-    - restart fail2ban
+    - Restart fail2ban
 
 - name: Find cron files and directories
   find:
