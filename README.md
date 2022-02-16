@@ -1,4 +1,6 @@
+## Description
 An ansible project to deploy apache superset on Ubuntu box
+
 ## Technologies
 Project is created and tested with:
 * Ubuntu: 20.04
