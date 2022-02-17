@@ -4,7 +4,7 @@ An ansible project to deploy apache superset on Ubuntu box
 ## Technologies
 Project is created and tested with:
 * Ubuntu: 20.04
-* Ansible: 3.8
+* Ansible: 2.9.6
 * Python: 3.8
 * apache-superset: 1.4.1
 * postgres: 12.9
